@@ -58,12 +58,10 @@ export class MongoPaladinRepository implements PaladinRepository {
     }
   }
 
-  async save(paladin: Paladin): Promise<void> {
+  async save({ name, rank, kingdom }: Paladin): Promise<void> {
     await this.connect();
     try {
-      await this.db
-        .collection("paladins")
-        .insertOne({ ...paladin, _id: new ObjectId(paladin.id) });
+      await this.db.collection("paladins").insertOne({ name, rank, kingdom });
     } finally {
       await this.close();
     }

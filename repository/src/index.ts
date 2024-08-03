@@ -1,21 +1,19 @@
 import { PaladinService } from "./application/PaladinService";
 import { RepositoryType } from "./infrastructure";
 import { ObjectId } from "mongodb";
+import { v4 as uuidv4 } from "uuid";
 
 async function main() {
   const postgresService = new PaladinService(RepositoryType.POSTGRES);
   const mongoService = new PaladinService(RepositoryType.MONGO);
   const apiService = new PaladinService(RepositoryType.API);
 
-  const [postgresData, mongoData, apiData] = await Promise.all([
-    postgresService.getAllPaladins(),
-    mongoService.getAllPaladins(),
-    apiService.getAllPaladins(),
-  ]);
-
-  const allData = [...postgresData, ...mongoData];
-
-  console.log(allData);
+  postgresService.createPaladin({
+    id: new ObjectId().toHexString(),
+    name: "Tirion",
+    rank: "Highlord",
+    kingdom: "Lordaeron",
+  });
 }
 
 main().catch(console.error);

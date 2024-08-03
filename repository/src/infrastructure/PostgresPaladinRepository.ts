@@ -27,17 +27,17 @@ export class PostgresPaladinRepository implements PaladinRepository {
     return result.rows;
   }
 
-  async save(paladin: Paladin): Promise<void> {
+  async save({ id, name, rank, kingdom }: Paladin): Promise<void> {
     await this.pool.query(
       "INSERT INTO paladins (id, name, rank, kingdom) VALUES ($1, $2, $3, $4)",
-      [paladin.id, paladin.name, paladin.rank, paladin.kingdom]
+      [id, name, rank, kingdom]
     );
   }
 
-  async update(paladin: Paladin): Promise<void> {
+  async update({ id, name, rank, kingdom }: Paladin): Promise<void> {
     await this.pool.query(
       "UPDATE paladins SET name = $2, rank = $3, kingdom = $4 WHERE id = $1",
-      [paladin.id, paladin.name, paladin.rank, paladin.kingdom]
+      [id, name, rank, kingdom]
     );
   }
 
