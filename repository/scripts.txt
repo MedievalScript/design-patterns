@@ -1,0 +1,33 @@
+CREATE TABLE paladins (
+    id VARCHAR(255) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    rank VARCHAR(255) NOT NULL,
+    kingdom VARCHAR(255) NOT NULL
+);
+
+db.createCollection("paladins", {
+    validator: {
+       $jsonSchema: {
+          bsonType: "object",
+          required: [ "_id", "name", "rank", "kingdom" ],
+          properties: {
+             _id: {
+                bsonType: "objectId",
+                description: "must be an ObjectId and is required"
+             },
+             name: {
+                bsonType: "string",
+                description: "must be a string and is required"
+             },
+             rank: {
+                bsonType: "string",
+                description: "must be a string and is required"
+             },
+             kingdom: {
+                bsonType: "string",
+                description: "must be a string and is required"
+             }
+          }
+       }
+    }
+})
