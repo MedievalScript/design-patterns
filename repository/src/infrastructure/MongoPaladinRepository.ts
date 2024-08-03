@@ -3,7 +3,7 @@ import { MongoClient, Db, ObjectId } from "mongodb";
 
 export class MongoPaladinRepository implements PaladinRepository {
   private client: MongoClient;
-  private db!: Db; // Using the definite assignment assertion
+  private db!: Db;
   private connected: boolean = false;
 
   constructor() {
@@ -58,10 +58,10 @@ export class MongoPaladinRepository implements PaladinRepository {
     }
   }
 
-  async save({ name, rank, kingdom }: Paladin): Promise<void> {
+  async save(paladin: Paladin): Promise<void> {
     await this.connect();
     try {
-      await this.db.collection("paladins").insertOne({ name, rank, kingdom });
+      await this.db.collection("paladins").insertOne(paladin);
     } finally {
       await this.close();
     }

@@ -1,8 +1,8 @@
 CREATE TABLE paladins (
-    id VARCHAR(255) PRIMARY KEY,
+    id CHAR(36) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     rank VARCHAR(255) NOT NULL,
-    kingdom VARCHAR(255) NOT NULL
+    kingdom VARCHAR(255) NOT NULL,
 );
 
 db.createCollection("paladins", {
