@@ -50,3 +50,6 @@ Beekeeper Studio https://www.beekeeperstudio.io/
 
 MongoDB Compass https://www.mongodb.com/products/tools/compass
 
+### Contribuciones
+Si quieres contribuir a este repositorio, puedes hacer un PULL REQUEST
+
